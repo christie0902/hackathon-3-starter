@@ -15,7 +15,15 @@
         <li>{{$owner->first_name . " " . $owner->surname}}</li>
         <a href="{{route('owner.detail', ['id'=>$owner->id])}}">See details</a>
         <a href="{{route('owner.edit',['id'=>$owner->id])}}">Edit</a>
+
+
+       <form  action="{{route('owner.delete', ['id'=>$owner->id])}}" method="post">
+        @method('DELETE')
+        @csrf
+        <button type="submit" onclick="return confirm('Are you sure you want to delete this owner?')">Delete</button>
+       </form>
         @endforeach
+
     </ul>
     <a href="{{route('home')}}">Back to Home</a>
 </body>

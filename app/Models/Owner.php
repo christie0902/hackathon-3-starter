@@ -13,4 +13,13 @@ class Owner extends Model
     {
         return $this->hasMany(Animal::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($owner) {
+            $owner->animal()->delete();
+        });
+    }
 }

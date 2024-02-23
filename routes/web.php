@@ -36,3 +36,5 @@ Route::get('/owner/add', function () {
 Route::post('/owner/store', [OwnerController::class, 'store'])->name('owner.store');
 Route::get('/owner/edit/{id}', [OwnerController::class, 'edit'])->name('owner.edit');
 Route::put('/owner/update/{id}', [OwnerController::class, 'update'])->name('owner.update');
+
+Route::delete('/owners/{id}', [OwnerController::class, 'destroy'])->name('owner.delete');

@@ -130,4 +130,11 @@ class OwnerController extends Controller
         return redirect()->route('owner.display');
     }
 
+    public function destroy($id) {
+        $owner = Owner::findOrFail($id);
+        $owner->delete();
+
+        return redirect()->route('owner.display');
+    }
+
 }

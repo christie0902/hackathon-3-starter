@@ -26,3 +26,10 @@ Route::get('/home/search', [OwnerController::class, 'search']);
 
 Route::get('/home/owners/{id}/detail', [OwnerController::class, 'getDetail'])->name('owner.detail');
 Route::get('/home/animals/{id}/detail', [AnimalController::class, 'getDetail'])->name('animal.detail');
+
+Route::get('/owner/add', function () {
+    return view('owner.add');
+})->name('owner.add');
+Route::post('/owner/store', [OwnerController::class, 'store'])->name('owner.store');
+Route::get('/owner/edit/{id}', [OwnerController::class, 'edit'])->name('owner.edit');
+Route::put('/owner/update/{id}', [OwnerController::class, 'update'])->name('owner.update');

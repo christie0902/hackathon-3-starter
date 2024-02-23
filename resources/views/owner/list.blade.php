@@ -8,11 +8,13 @@
 </head>
 <body>
     <h1>LIST OF OWNERS</h1>
+    <a href="{{ route('owner.add') }}">Add new owner</a>
     <ul>
         {{-- @dd($owner_list) --}}
         @foreach ($owner_list as $owner)
         <li>{{$owner->first_name . " " . $owner->surname}}</li>
         <a href="{{route('owner.detail', ['id'=>$owner->id])}}">See details</a>
+        <a href="{{route('owner.edit',['id'=>$owner->id])}}">Edit</a>
         @endforeach
     </ul>
     <a href="{{route('home')}}">Back to Home</a>

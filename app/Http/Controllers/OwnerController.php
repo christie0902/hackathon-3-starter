@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
+use App\Models\Animal;
 
 use Illuminate\Http\Request;
 
@@ -34,4 +35,92 @@ class OwnerController extends Controller
         $owner_detail = Owner::findOrFail($id);
         return view('owner.details', compact('owner_detail'));
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'pet_name' => 'required'
+        ], [
+            'first_name.required' => 'Please enter your first name!',
+            'surname.required' => 'Please enter your surname!',
+            'email.required' => 'Please enter your email!',
+            'email.email' => 'Please enter a valid email address!',
+            'phone.required' => 'Please enter your phone number!',
+            'phone.numeric' => 'Phone number must be numeric!',
+            'pet_name.required' => 'Please enter your pet name!'
+        ]);
+
+        $data = $request->all();
+
+        // Create a new owner
+        $new_owner = new Owner();
+        $new_owner->first_name = $data['first_name'];
+        $new_owner->surname = $data['surname'];
+        $new_owner->email = $data['email'];
+        $new_owner->phone = $data['phone'];
+        $new_owner->save();
+
+        // Create a new animal associated with the owner
+        $new_animal = new Animal();
+        $new_animal->name = $data['pet_name'];
+        $new_owner->animal()->save($new_animal);
+
+
+        session()->flash('success_message', 'Owner has been added!');
+
+        return redirect()->back();
+    }
+
+    public function edit($id)
+    {
+        $owner = Owner::findOrFail($id);
+        return view('owner.edit', compact('owner'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $owner = Owner::findOrFail($id);
+
+        $this->validate($request, [
+            'first_name' => 'required',
+            'surname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'pet_name' => 'required'
+        ], [
+            'first_name.required' => 'Please enter your first name!',
+            'surname.required' => 'Please enter your surname!',
+            'email.required' => 'Please enter your email!',
+            'email.email' => 'Please enter a valid email address!',
+            'phone.required' => 'Please enter your phone number!',
+            'phone.numeric' => 'Phone number must be numeric!',
+            'pet_name.required' => 'Please enter your pet name!'
+        ]);
+
+        $owner->first_name = $request->input('first_name');
+        $owner->surname = $request->input('surname');
+        $owner->email = $request->input('email');
+        $owner->phone = $request->input('phone');
+        $owner->save();
+
+        $petName = $request->input('pet_name');
+        $animal = $owner->animal()->where('name', $petName)->first();
+
+        if ($animal) {
+            $animal->update([
+                'name' => $petName
+            ]);
+        } else {
+            $owner->animal()->create([
+                'name' => $petName
+            ]);
+        }
+
+        return redirect()->route('owner.display');
+    }
+
 }

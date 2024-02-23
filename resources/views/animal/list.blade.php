@@ -7,6 +7,18 @@
     <title>Animal list</title>
 </head>
 <body>
-    
+    <ul>
+        @foreach ($animal_list as $animal)
+            <li>
+                name:{{$animal->name}} <br>
+                species:{{$animal->species}} <br>
+                breed:{{$animal->breed}}
+                age:{{$animal->age}}
+                weight:{{$animal->weight}} <br><br>
+            </li>
+            @endforeach
+            
+        </ul>
+        <a href="{{route('home')}}">Back to Home</a>
 </body>
 </html>

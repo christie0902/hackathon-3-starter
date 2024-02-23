@@ -10,35 +10,57 @@
     <h1 ><a href="{{ route('owner.display')}}" style="color: black">Owners</a></h1>
     <h1><a href="{{ route('animal.display')}}" style="color: black">Animals</a></h1>
 
-    <form action="/home/search" method="get">
+    <form action="/home/search-owner" method="get">
         <label for="search-owner">Search by owner</label><br>
         <input type="text" name="search-owner"><br>
         <button type="submit">Search 👤</button><br><br>
     </form>
+    
+    
+    @if (isset($messageOwner))
+       {{$messageOwner}}
+    @endif
 
-    <?php if(isset($search_result)) : ?>
+    <br><br>
+
+    <?php if(isset($search_owner)) : ?>
     <h2>Search Results:</h2>
+    
     <ul>
-        <?php foreach ($search_result as $owner) : ?>
+        <?php foreach ($search_owner as $owner) : ?>
             <li>{{$owner->first_name . " " . $owner->surname}}</li>
         <?php endforeach; ?>
     </ul>
     <?php endif; ?>
 
-    <form action="" method="get">
+   
+    <br><br>
+    <form action="/home/search-animal" method="get">
         <label for="search-animal">Search by animal</label><br>
         <input type="text" name="search-animal"><br>
         <button type="submit">Search 🐶</button>
     </form>
 
-    @if (isset($search_result))
-        <h2>Search Results</h2>
-        @foreach ($serach_result as $animal)
-            <li></li>
-            <li>{{$animal->name}}</li>
-        @endforeach
+    <br>
+
+
+    @if (isset($messageAnimal))
+      {{$messageAnimal}}
     @endif
 
+    <br><br>
+
+
+    @if (isset($search_animal))
+        <h2>Search Results</h2>
+        <ul>
+        @foreach ($search_animal as $animal)
+            <li>{{$animal->name}}</li>
+        @endforeach
+        </ul>
+    @endif
+
+    
     
 </body>
 </html>

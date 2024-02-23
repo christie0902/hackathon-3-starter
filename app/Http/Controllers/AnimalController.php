@@ -22,13 +22,19 @@ class AnimalController extends Controller
     public function search(Request $request)
     {
         $search_query = $request->input('search-animal');
-        $search_result = Animal::where('name', 'like', '%' . $search_query . '%')
-            ->orWhere('breed', 'like', '%' . $search_query . '%')
-            ->limit(20)
-            ->owner()
+        $search_animal = Animal::where('name', 'like', '%' . $search_query . '%')
+            // ->orWhere('breed', 'like', '%' . $search_query . '%')
+            ->limit(30)
+            ->leftJoin('owners', 'animals.owner_id', '=', 'owners.id')
             ->get();
 
-        return view('animal.search', compact('search_result'));
+        if (count($search_animal) < 1) {
+            $messageAnimal = 'Animal not found. 🐶';
+            return view('home', compact('messageAnimal'));
+        } else {
+            return view('home', compact('search_animal'));
+        }
+
     }
 
     public function getDetail($id)

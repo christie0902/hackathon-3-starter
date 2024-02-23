@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('owners', function (Blueprint $table) {
+        Schema::create('animals', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name')->nullable();
-            $table->string('surname')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();
+            $table->foreignId('image_id')->nullable();
+            $table->foreignId('owner_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('species')->nullable();
+            $table->string('breed')->nullable();
+            $table->integer('age')->nullable();
+            $table->integer('weight')->nullable();
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
             $table->timestamps();
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('owners');
+        Schema::dropIfExists('animals');
     }
 };

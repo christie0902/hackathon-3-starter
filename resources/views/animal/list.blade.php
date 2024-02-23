@@ -7,6 +7,7 @@
     <title>Animal list</title>
 </head>
 <body>
+    <h1>LIST OF ANIMALS</h1>
     <ul>
 
         @foreach ($animal_list as $animal)
@@ -15,9 +16,8 @@
                 <img src="/images/pets/{{ $animal->path }}" alt="photoOfDog" style="width:400px"><br>
                 Owner: {{$animal->owner->first_name}}<br>
                 Species:{{$animal->species}} <br>
-                Breed:{{$animal->breed}}
-                Age:{{$animal->age}}
-                Weight:{{$animal->weight}} <br><br>
+
+                <a href="{{route('animal.detail',['id' => $animal->id])}}">See details</a>
             </li>
             @endforeach
             

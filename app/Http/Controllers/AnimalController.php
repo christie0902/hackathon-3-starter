@@ -29,4 +29,10 @@ class AnimalController extends Controller
             ->get();
         return view('animal.search', compact('search_result'));
     }
+
+    public function getDetail($id)
+    {
+        $animal_detail = Animal::findOrFail($id);
+        return view('animal.details', compact('animal_detail'));
+    }
 }

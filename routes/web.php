@@ -23,3 +23,6 @@ Route::view('/home', 'home')->name('home');
 Route::get('/home/owners', [OwnerController::class, 'display'])->name('owner.display');
 Route::get('/home/animals', [AnimalController::class, 'display'])->name('animal.display');
 Route::get('/home/search', [OwnerController::class, 'search']);
+
+Route::get('/home/owners/{id}/detail', [OwnerController::class, 'getDetail'])->name('owner.detail');
+Route::get('/home/animals/{id}/detail', [AnimalController::class, 'getDetail'])->name('animal.detail');

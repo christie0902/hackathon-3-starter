@@ -19,6 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/home', 'home');
+Route::view('/home', 'home')->name('home');
 Route::get('/home/owners', [OwnerController::class, 'display'])->name('owner.display');
 Route::get('/home/animals', [AnimalController::class, 'display'])->name('animal.display');

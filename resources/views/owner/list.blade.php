@@ -7,6 +7,12 @@
     <title>Owner List</title>
 </head>
 <body>
-    
+    <ul>
+        {{-- @dd($owner_list) --}}
+        @foreach ($owner_list as $owner)
+        <li>{{$owner->first_name . " " . $owner->surname}}</li>
+        @endforeach
+    </ul>
+    <a href="{{route('home')}}">Back to Home</a>
 </body>
 </html>

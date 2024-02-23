@@ -8,13 +8,16 @@
 </head>
 <body>
     <ul>
+
         @foreach ($animal_list as $animal)
             <li>
-                name:{{$animal->name}} <br>
-                species:{{$animal->species}} <br>
-                breed:{{$animal->breed}}
-                age:{{$animal->age}}
-                weight:{{$animal->weight}} <br><br>
+                <h3>{{$animal->name}}</h3> <br>
+                <img src="/images/pets/{{ $animal->path }}" alt="photoOfDog" style="width:400px"><br>
+                Owner: {{$animal->owner->first_name}}<br>
+                Species:{{$animal->species}} <br>
+                Breed:{{$animal->breed}}
+                Age:{{$animal->age}}
+                Weight:{{$animal->weight}} <br><br>
             </li>
             @endforeach
             

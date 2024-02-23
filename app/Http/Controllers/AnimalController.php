@@ -12,6 +12,8 @@ class AnimalController extends Controller
         $animal_list = Animal::query()
             ->orderBy("name", "ASC")
             ->limit(30)
+            ->leftJoin('images', 'animals.image_id', '=', 'images.id')
+            // ->owner()
             ->get();
 
         return view("animal.list", compact("animal_list"));
@@ -23,8 +25,8 @@ class AnimalController extends Controller
         $search_result = Animal::where('name', 'like', '%' . $search_query . '%')
             ->orWhere('breed', 'like', '%' . $search_query . '%')
             ->limit(20)
+            ->owner()
             ->get();
-
         return view('animal.search', compact('search_result'));
     }
 }

@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('breed')->nullable();
             $table->integer('age')->nullable();
             $table->integer('weight')->nullable();
-            $table->dateTime('created_at')->nullable();
-            $table->dateTime('updated_at')->nullable();
             $table->timestamps();
         });
     }

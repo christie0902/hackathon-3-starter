@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/home', 'home');
+Route::get('/home/owners', [OwnerController::class, 'display'])->name('owner.display');
+Route::get('/home/animals', [AnimalController::class, 'display'])->name('animal.display');

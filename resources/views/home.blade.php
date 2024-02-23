@@ -7,12 +7,16 @@
     <title>Home</title>
 </head>
 <body>
-    <h1 ><a href="{{ route('owner.display')}}" style="color: black">Owners</a></h1>
+    <div style="display:inline-block">
+    <h1 style="padding-inline:10px"><a href="{{ route('owner.display')}}" style="color: black">Owners</a></h1>
+    </div>
+    <div style="display:inline-block">
     <h1><a href="{{ route('animal.display')}}" style="color: black">Animals</a></h1>
+    </div>
 
     <form action="/home/search-owner" method="get">
         <label for="search-owner">Search by owner</label><br>
-        <input type="text" name="search-owner"><br>
+        <input type="text" name="search-owner">
         <button type="submit">Search 👤</button><br><br>
     </form>
     
@@ -37,7 +41,7 @@
     <br><br>
     <form action="/home/search-animal" method="get">
         <label for="search-animal">Search by animal</label><br>
-        <input type="text" name="search-animal"><br>
+        <input type="text" name="search-animal">
         <button type="submit">Search 🐶</button>
     </form>
 

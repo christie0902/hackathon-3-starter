@@ -49,7 +49,7 @@
             <input type="text" id="pet_name" name="pet_name" placeholder="Enter pet name" value="{{ old('pet_name, , $owner->animal->name)') }}" required>
         </div>
         <br>
-        <button type="submit">Add</button>
+        <button type="submit">Save</button>
     </form>
     <br>
     <a href="{{route('owner.display')}}">Back to list</a>

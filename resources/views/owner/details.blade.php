@@ -13,6 +13,10 @@
     Phone: {{$owner_detail->phone}}<br>
     Address: {{$owner_detail->address}}<br>
 
+    
+    <a href="{{route('owner.add_log', ['id'=>$owner_detail->id])}}">Add log</a>
+    <br>
     <a href="{{route('owner.display')}}">Back</a>
+
 </body>
 </html>

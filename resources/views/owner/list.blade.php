@@ -22,6 +22,7 @@
         @csrf
         <button type="submit" onclick="return confirm('Are you sure you want to delete this owner?')">Delete</button>
        </form>
+       <br>
         @endforeach
 
     </ul>

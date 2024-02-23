@@ -4,6 +4,7 @@ use App\Http\Controllers\AnimalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OwnerController;
 use App\Models\Animal;
+use App\Http\Controllers\VisitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/home/search-animal', [AnimalController::class, 'search']);
 
 
 Route::get('/home/owners/{id}/detail', [OwnerController::class, 'getDetail'])->name('owner.detail');
-Route::get('/home/animals/{id}/detail', [AnimalController::class, 'getDetail'])->name('animal.detail');
+Route::get('/home/animals/{id?}/detail', [AnimalController::class, 'getDetail'])->name('animal.detail');
 
 Route::get('/owner/add', function () {
     return view('owner.add');
@@ -38,3 +39,8 @@ Route::get('/owner/edit/{id}', [OwnerController::class, 'edit'])->name('owner.ed
 Route::put('/owner/update/{id}', [OwnerController::class, 'update'])->name('owner.update');
 
 Route::delete('/owners/{id}', [OwnerController::class, 'destroy'])->name('owner.delete');
+
+Route::get('/owner/{id}/add', function () {
+    return view('owner.add_log');
+})->name('owner.add_log');
+Route::post('/owner/log/store', [VisitController::class, 'store'])->name('log.store');

@@ -17,4 +17,17 @@ class OwnerController extends Controller
 
         return view("owner.list", compact("owner_list"));
     }
+
+    public function search(Request $request)
+    {
+        $search_query = $request->input('search-owner');
+        $search_result = Owner::where('first_name', 'like', '%' . $search_query . '%')
+            ->orWhere('surname', 'like', '%' . $search_query . '%')
+            ->where('first_name', '!=', "")
+            ->where('surname', '!=', "")
+            ->limit(20)
+            ->get();
+
+        return view('home', compact('search_result'));
+    }
 }

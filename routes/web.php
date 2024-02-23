@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::view('/home', 'home')->name('home');
 Route::get('/home/owners', [OwnerController::class, 'display'])->name('owner.display');
 Route::get('/home/animals', [AnimalController::class, 'display'])->name('animal.display');
+Route::get('/home/search', [OwnerController::class, 'search']);

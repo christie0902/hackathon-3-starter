@@ -15,4 +15,14 @@ class AnimalController extends Controller
         return view("animal.list", compact("animal_list"));
     }
 
+    public function search(Request $request)
+    {
+        $search_query = $request->input('search-animal');
+        $search_result = Animal::where('name', 'like', '%' . $search_query . '%')
+            ->orWhere('breed', 'like', '%' . $search_query . '%')
+            ->limit(20)
+            ->get();
+
+        return view('animal.search', compact('search_result'));
+    }
 }

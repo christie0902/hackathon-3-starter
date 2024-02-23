@@ -21,12 +21,19 @@ class OwnerController extends Controller
     public function search(Request $request)
     {
         $search_query = $request->input('search-owner');
-        $search_result = Owner::where('first_name', 'like', '%' . $search_query . '%')
+        $search_owner = Owner::where('first_name', 'like', '%' . $search_query . '%')
             ->orWhere('surname', 'like', '%' . $search_query . '%')
             ->limit(20)
             ->get();
-        // if (!isset($search_result))
-        return view('home', compact('search_result'));
+            // dd($search_owner);
+        if (count($search_owner)<1) {
+            $messageOwner = 'Owner not found. 👤';
+            // dd($message);
+            return view('home', compact('messageOwner'));
+        } else {
+            return view('home', compact('search_owner'));
+        }
+
     }
 
     public function getDetail($id)

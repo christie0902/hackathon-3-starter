@@ -23,11 +23,15 @@ class OwnerController extends Controller
         $search_query = $request->input('search-owner');
         $search_result = Owner::where('first_name', 'like', '%' . $search_query . '%')
             ->orWhere('surname', 'like', '%' . $search_query . '%')
-            ->where('first_name', '!=', "")
-            ->where('surname', '!=', "")
             ->limit(20)
             ->get();
-
+        // if (!isset($search_result))
         return view('home', compact('search_result'));
+    }
+
+    public function getDetail($id)
+    {
+        $owner_detail = Owner::findOrFail($id);
+        return view('owner.details', compact('owner_detail'));
     }
 }

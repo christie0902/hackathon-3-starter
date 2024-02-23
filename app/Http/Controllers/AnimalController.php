@@ -27,6 +27,7 @@ class AnimalController extends Controller
             ->limit(20)
             ->owner()
             ->get();
+            
         return view('animal.search', compact('search_result'));
     }
 }

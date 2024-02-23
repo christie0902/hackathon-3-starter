@@ -11,9 +11,9 @@
     <h1><a href="{{ route('animal.display')}}" style="color: black">Animals</a></h1>
 
     <form action="/home/search" method="get">
-        <label for="search-owner">Search by owner</label>
-        <input type="text" name="search-owner">
-        <button type="submit">Search</button>
+        <label for="search-owner">Search by owner</label><br>
+        <input type="text" name="search-owner"><br>
+        <button type="submit">Search 👤</button><br><br>
     </form>
 
     <?php if(isset($search_result)) : ?>
@@ -25,5 +25,20 @@
     </ul>
     <?php endif; ?>
 
+    <form action="" method="get">
+        <label for="search-animal">Search by animal</label><br>
+        <input type="text" name="search-animal"><br>
+        <button type="submit">Search 🐶</button>
+    </form>
+
+    @if (isset($search_result))
+        <h2>Search Results</h2>
+        @foreach ($serach_result as $animal)
+            <li></li>
+            <li>{{$animal->name}}</li>
+        @endforeach
+    @endif
+
+    
 </body>
 </html>
